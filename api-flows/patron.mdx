@@ -1,0 +1,77 @@
+---
+title: "Patron API Flow"
+---
+
+Describes the journey of a patron in the Kitchen Display System (KDS). The patron starts by open the food ordering application which displays the categories (e.g., Appetizer, Main Course, Dessert) which the patron can browse.
+
+## Start Browsing
+
+The patron has opened the food ordering app and has clicked on a category.
+
+### Request
+
+This request gets data from the `dishes`endpoint, filtering results for the dishes corresponding to the category that the user has selected (in this example, Appetizer):
+
+> curl -X GET 'http://{serverUrl}/dishes?filter=category.eq~Appetizer&fields=name|description|ingredients
+
+<Info>
+  Note: The fields query parameter limits the fields returned to the dish’s name and description (for the end user) and its list of ingredients (for the ingredient check in the next step).
+</Info>
+
+### Response
+
+If the request was successful, the server responds with a `200` status code, with the response body containing the list of dishes corresponding to the specified category.
+
+> {
+>
+>   "results": [
+>
+>     {
+>
+>       "id": "681912070b9a351cc857e551",
+>
+>       "name": "Bruschetta al Pomodoro",
+>
+>       "description": "Toasted bread topped with a mixture of ripe tomatoes, garlic, basil, and olive oil.",
+>
+>       "ingredients": [
+>
+>         {
+>
+>           "ingredient_id": "681912070b9a351cc857e539",
+>
+>           "is_essential": false,
+>
+>           "\_id": "681912070b9a351cc857e552"
+>
+>         },
+>
+>         {
+>
+>           "ingredient_id": "681912070b9a351cc857e548",
+>
+>           "is_essential": false,
+>
+>           "\_id": "681912070b9a351cc857e553"
+>
+>         },
+>
+>         {
+>
+>           "ingredient_id": "681912070b9a351cc857e538",
+>
+>           "is_essential": false,
+>
+>           "\_id": "681912070b9a351cc857e554"
+>
+>         }
+>
+>       ]
+>
+>     }
+>
+>   ],
+>
+>   "total_results": 1
+>
+> }
