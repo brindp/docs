@@ -11,7 +11,7 @@ The Patron's user journey follows the customer to browse available dishes by `ca
 5. Patron places the order in the system.
 6. Patron gets a confirmation that the order has been successfully placed.
 
-## Step 1 - Browse Dishes
+## Step 1 - Browse dishes by category
 
 The patron uses the food ordering app to browse the available dishes by category (appetizers, main course, drinks, and desserts).
 
@@ -25,10 +25,10 @@ curl -X GET 'http://{serverUrl}/dishes?filter=category.eq~Appetizer&fields=name|
 
 **Query Parameters**
 
-| Name   | Type   | Required | Description                                               |
-| ------ | ------ | -------- | --------------------------------------------------------- |
-| filter | string | No       | Filter expression (e.g., category.eq~Appetizer)           |
-| Fields | string | No       | Pipe-separated list of foelds to include in the response. |
+| Name   | Type   | Required | Description                                              |
+| ------ | ------ | -------- | -------------------------------------------------------- |
+| filter | string | No       | Filter expression (e.g., category.eq~Appetizer)          |
+| Fields | string | No       | Pipe-separated list of fields to include in the response |
 
 ### Response
 
@@ -72,3 +72,42 @@ Example Response
 | ingredient_id | string        | Unique identifier for the ingredient                   |
 | is_essential  | boolean       | Indicates if this ingredient is essential for the dish |
 | \_id          | string        | Internal identifier for this ingredient entry          |
+
+## Step 2: Check ingredient quantities
+
+The client app must check inventory for necessary ingredients before displaying dishes in the user interface. Each dish references ingredient IDs, identifying essential ones. If an essential ingredient is out of stock, the UI will disable dish selection.
+
+### Request
+
+The client sends an HTTP request to the `ingredients` endpoint, filtering the response to only include the ingredient quantity:
+
+```powershell
+curl -X GET 'http://{serverUrl}/ingredients/{id}&fields=in_stock_qty'
+```
+
+**Query Parameters**
+
+| Name   | Type   | Required | Description                                              |
+| :----- | :----- | :------- | :------------------------------------------------------- |
+| id     | string | Yes      | Unique identifier of the ingredient                      |
+| fields | string | No       | Pipe-separated list of fields to include in the response |
+
+### Response
+
+If the request was successful, the server responds with a `200 OK` status code, with the response body containing the ingredient’s in-stock quantity.
+
+**Example Response**
+
+```json
+{
+  "id": "681912070b9a351cc857e542",
+  "in_stock_qty": 7
+}
+```
+
+**Response Fields**
+
+| Name         | Type    | Description                                   |
+| :----------- | :------ | :-------------------------------------------- |
+| id           | string  | Unique identifier of the ingredient           |
+| in_stock_qty | integer | Quantity of the ingredient currently in stock |
