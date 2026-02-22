@@ -1,5 +1,37 @@
 ---
-title: "Patron"
+title: "Patron API Flow"
 ---
 
-testing
+The Patron's user journey allows the customer to browse available dishes by category on the food ordering app and place an order.
+
+## Step 1 - Browse Dishes
+
+The patron uses the food ordering app to browse the available dishes by category (appetizers, main course, drinks, and desserts).
+
+### Request
+
+The client sends an HTTP request to retrieve a list of dishes filtered by the selected category.
+
+```
+curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
+```
+
+> curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
+
+<RequestExample>
+
+``` filename
+curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
+```
+
+</RequestExample>
+
+/
+
+### Response
+
+1. Ensure the essential ingredients for the dish are in stock.
+2. Allow the patron to view dish details prior to ordering.
+3. Let the patron add a dish to their cart and view it.
+4. Create the order in the system.
+5. Confirm to the patron the order has been successfully placed.
