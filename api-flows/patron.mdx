@@ -16,19 +16,36 @@ The client sends an HTTP request to retrieve a list of dishes filtered by the se
 curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
 ```
 
-> curl -X GET 'http://serverUrl/dishes/id?fields=price|image_name|ingredients'
-
-<RequestExample>
-
-```filename File 1
-curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
-```
-
-</RequestExample>
-
-/
-
 ### Response
+
+If the request was successful, the server responds with a `200 OK` status code with the response body containing the dish details. The client now has the data it needs to populate the dish details page.
+
+Example Response
+
+```
+{
+  "id": "681912070b9a351cc857e551",
+  "price": 799,
+  "image_name": "bruschetta_al_pomodoro",
+  "ingredients": [
+    {
+      "ingredient_id": "681912070b9a351cc857e539",
+      "is_essential": false,
+      "_id": "681912070b9a351cc857e552"
+    },
+    {
+      "ingredient_id": "681912070b9a351cc857e548",
+      "is_essential": false,
+      "_id": "681912070b9a351cc857e553"
+    },
+    {
+      "ingredient_id": "681912070b9a351cc857e538",
+      "is_essential": false,
+      "_id": "681912070b9a351cc857e554"
+    }
+  ]
+}
+```
 
 1. Ensure the essential ingredients for the dish are in stock.
 2. Allow the patron to view dish details prior to ordering.
