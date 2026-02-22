@@ -2,7 +2,7 @@
 title: "Patron API Flow"
 ---
 
-The Patron's user journey follows the customer to browse available dishes by category on the food ordering app and place an order.
+The Patron's user journey follows the customer to browse available dishes by `category` on the food ordering app and place an order.
 
 1. Patron browses the available dishes by category (appetizers, main course, drinks, and desserts).
 2. The client app ensures the essential ingredients for the dish are in stock.
@@ -13,7 +13,13 @@ The Patron's user journey follows the customer to browse available dishes by cat
 
 ## Step 1 - Browse Dishes
 
-The patron uses the food ordering app to browse the available dishes by category (appetizers, main course, drinks, and desserts).
+The patron uses the food ordering app to browse the available dishes by 
+
+<ParamField path="param" type="string">
+  Enter a description
+</ParamField>
+
+category (appetizers, main course, drinks, and desserts).
 
 ### Request
 
@@ -63,12 +69,12 @@ Example Response
 
 **Response Fields**
 
-| Field         | Type          | Description                                            |
-| ------------- | ------------- | ------------------------------------------------------ |
-| id            | string        | Unique identifier of the dish                          |
-| price         | integer       | Price of the dish in dollars                           |
-| image_name    | string        | Name of the dish                                       |
-| ingredients   | array[object] | List of ingredients associated with the dish           |
-| ingredient_id | string        | Unique identifier for the ingredient                   |
-| is_essential  | boolean       | Indicates if this ingredient is essential for the dish |
-| \_id          | string        | Internal identifier for this ingredient entry          |
+| Field                           | Type          | Description                                            |
+| ------------------------------- | ------------- | ------------------------------------------------------ |
+| id                              | string        | Unique identifier of the dish                          |
+| price                           | integer       | Price of the dish in dollars                           |
+| image_name                      | string        | Name of the dish                                       |
+| ingredients                     | array[object] | List of ingredients associated with the dish           |
+| &nbsp;&nbsp;&nbsp;ingredient_id | string        | Unique identifier for the ingredient                   |
+| &nbsp;&nbsp;&nbsp;is_essential  | boolean       | Indicates if this ingredient is essential for the dish |
+| &nbsp;&nbsp;&nbsp;\_id          | string        | Internal identifier for this ingredient entry          |
