@@ -12,7 +12,7 @@ The patron uses the food ordering app to browse the available dishes by category
 
 The client sends an HTTP request to retrieve a list of dishes filtered by the selected category.
 
-```
+```powershell
 curl -X GET 'http://{serverUrl}/dishes/{id}?fields=price|image_name|ingredients'
 ```
 
@@ -22,7 +22,6 @@ If the request was successful, the server responds with a `200 OK` status code w
 
 Example Response
 
-````
 ```json
 {
   "id": "681912070b9a351cc857e551",
@@ -47,7 +46,6 @@ Example Response
   ]
 }
 ```
-````
 
 1. Ensure the essential ingredients for the dish are in stock.
 2. Allow the patron to view dish details prior to ordering.
