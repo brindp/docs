@@ -66,6 +66,18 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Point of Service API reference",
+        "groups": [
+          {
+            "group": "API Flows",
+            "pages": [
+              "api-flows/patron",
+              "api-flows/staff"
+            ]
+          }
+        ]
       }
     ],
     "global": {
